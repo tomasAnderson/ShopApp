@@ -5,12 +5,40 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:ShopApp"
         mc:Ignorable="d"
-        Title="AvtorizationWindow" Height="450" Width="800">
-    <Grid>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBox/>
-            <TextBox/>
-            <Button Content="Press something" Click="Avtorization_OnClick"/>
-        </StackPanel>
+        WindowStartupLocation="CenterScreen"
+        Title="AvtorizationWindow" Height="350" Width="600">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/PageThemeRD.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Background="Aqua">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="0.3*" />
+            <RowDefinition Height="0.3*" />
+            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*" />
+            <ColumnDefinition Width="0.4*" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="0.1*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Логин:" />
+        <TextBox Grid.Row="1" Grid.Column="2" />
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="Пароль:" />
+        <PasswordBox Grid.Row="2" Grid.Column="2" />
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" Content="Вход в программу" Click="Avtorization_OnClick" />
+        </Grid>
     </Grid>
 </Window>

@@ -1,4 +1,6 @@
-﻿namespace ShopApp
+﻿using System.Windows;
+
+namespace ShopApp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -8,6 +10,13 @@
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void SignOutBtnClick(object sender, RoutedEventArgs e)
+        {
+            AvtorizationWindow aw = new AvtorizationWindow();
+            aw.Show();
+            this.Close();
         }
     }
 }

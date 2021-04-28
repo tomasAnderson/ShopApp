@@ -5,8 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShopApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="450" Width="800">
+    <!--<Grid>
         <TextBlock FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center">Здарова, чукча !</TextBlock>
+    </Grid>-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*" />
+                <ColumnDefinition Width="0.4*" />
+                <ColumnDefinition Width="0.4*" />
+            </Grid.ColumnDefinitions>
+            <!--<ComboBox
+                ItemsSource="{Binding Pages, Converter={StaticResource EnumToStringConverter}}"
+                SelectedItem="{Binding CurrentVM, Mode=TwoWay}" />-->
+            <ComboBox/>
+            <Button Grid.Column="2" Content="Выход" Click="SignOutBtnClick" />
+        </Grid>
+        <ContentControl Grid.Row="1" Content="{Binding CurrentVM}" />
     </Grid>
 </Window>
