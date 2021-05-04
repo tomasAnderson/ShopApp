@@ -5,4 +5,7 @@
     <DataTemplate DataType="{x:Type vm:UCSalesViewModel}">
         <view:UCSales />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:UCChargesViewModel}">
+        <view:UCCharges />
+    </DataTemplate>
 </ResourceDictionary>

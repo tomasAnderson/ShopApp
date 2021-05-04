@@ -73,7 +73,7 @@ namespace ShopApp.Connection
         public static ObservableCollection<ExpenseItems> GetExpenseItems()
         {
             _expenseItemsOc = new ObservableCollection<ExpenseItems>();
-            var res = DBConnection.DoSqlCommand("SELECT * FROM expense_items ORDER BY id", 4);
+            var res = DBConnection.DoSqlCommand("SELECT * FROM expense_items ORDER BY id", 2);
             foreach (var r in res)
                 _expenseItemsOc.Add(new ExpenseItems()
                 {

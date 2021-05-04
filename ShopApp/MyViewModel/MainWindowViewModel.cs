@@ -8,6 +8,7 @@ namespace ShopApp.MyViewModel
     {
         private object _currentPage;
         private UCSalesViewModel _salesViewModel;
+        private UCChargesViewModel _chargesViewModel;
 
         public PagesEnum PagesEnum { get; }
 
@@ -26,6 +27,7 @@ namespace ShopApp.MyViewModel
             CurrentPage = pagesEnum switch
             {
                 PagesEnum.Sales => _salesViewModel = new UCSalesViewModel(),
+                PagesEnum.Charges => _chargesViewModel = new UCChargesViewModel(),
                 _ => throw new ArgumentOutOfRangeException(nameof(pagesEnum), pagesEnum, null)
             };
         }

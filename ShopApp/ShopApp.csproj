@@ -130,7 +130,11 @@
         <Compile Include="MyModel\Sales.cs" />
         <Compile Include="MyModel\Warehouses.cs" />
         <Compile Include="MyViewModel\MainWindowViewModel.cs" />
+        <Compile Include="MyViewModel\UCChargesViewModel.cs" />
         <Compile Include="MyViewModel\UCSalesViewModel.cs" />
+        <Compile Include="MyView\UCCharges.xaml.cs">
+          <DependentUpon>UCCharges.xaml</DependentUpon>
+        </Compile>
         <Compile Include="MyView\UCSales.xaml.cs">
           <DependentUpon>UCSales.xaml</DependentUpon>
         </Compile>
@@ -153,6 +157,7 @@
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Page Include="MyView\UCCharges.xaml" />
         <Page Include="MyView\UCSales.xaml" />
         <Page Include="Styles\PageThemeRD.xaml" />
         <Page Include="Templates\PagesTemplate.xaml" />

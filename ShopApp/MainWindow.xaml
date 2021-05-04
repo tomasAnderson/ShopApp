@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:ShopApp"
         xmlns:vm="clr-namespace:ShopApp.MyViewModel"
         xmlns:converters="clr-namespace:ShopApp.Converters"
-        xmlns:view="clr-namespace:ShopApp.MyView"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="450" Width="800">
@@ -32,16 +31,11 @@
                 <ColumnDefinition Width="0.4*" />
                 <ColumnDefinition Width="0.4*" />
             </Grid.ColumnDefinitions>
-            <!--<ComboBox
-                ItemsSource="{Binding Pages, Converter={StaticResource EnumToStringConverter}}"
-                SelectedItem="{Binding CurrentVM, Mode=TwoWay}" />-->
             <ComboBox ItemsSource="{Binding PagesEnum, Converter={StaticResource EnumToStringConverter}}"
                       SelectedItem="{Binding CurrentPage, Mode=TwoWay}"
                       SelectedIndex="0"/>
             <Button Grid.Column="2" Content="Выход" Click="SignOutBtnClick" />
         </Grid>
         <ContentControl Grid.Row="1" Content="{Binding CurrentPage}" />
-        <!-- <view:UCSales Grid.Row="1"></view:UCSales> -->
-
     </Grid>
 </Window>
