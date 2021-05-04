@@ -9,6 +9,8 @@ namespace ShopApp.MyViewModel
         private object _currentPage;
         private UCSalesViewModel _salesViewModel;
         private UCChargesViewModel _chargesViewModel;
+        private UCCurrentMonthIncomeViewModel _currentMonthIncomeViewModel;
+        private UCTop5ChargesViewModel _top5ChargesViewModel;
 
         public PagesEnum PagesEnum { get; }
 
@@ -28,6 +30,8 @@ namespace ShopApp.MyViewModel
             {
                 PagesEnum.Sales => _salesViewModel = new UCSalesViewModel(),
                 PagesEnum.Charges => _chargesViewModel = new UCChargesViewModel(),
+                PagesEnum.CurrentMonthIncome => _currentMonthIncomeViewModel = new UCCurrentMonthIncomeViewModel(),
+                PagesEnum.Top5Charges => _top5ChargesViewModel = new UCTop5ChargesViewModel(),
                 _ => throw new ArgumentOutOfRangeException(nameof(pagesEnum), pagesEnum, null)
             };
         }

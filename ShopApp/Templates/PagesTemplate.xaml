@@ -8,4 +8,10 @@
     <DataTemplate DataType="{x:Type vm:UCChargesViewModel}">
         <view:UCCharges />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:UCCurrentMonthIncomeViewModel}">
+        <view:UCCurrentMonthIncome />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:UCTop5ChargesViewModel}">
+        <view:UCTop5Charges />
+    </DataTemplate>
 </ResourceDictionary>

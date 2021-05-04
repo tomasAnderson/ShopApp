@@ -27,9 +27,9 @@
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.2*" />
                 <ColumnDefinition Width="0.3*" />
-                <ColumnDefinition Width="0.4*" />
-                <ColumnDefinition Width="0.4*" />
             </Grid.ColumnDefinitions>
             <ComboBox ItemsSource="{Binding PagesEnum, Converter={StaticResource EnumToStringConverter}}"
                       SelectedItem="{Binding CurrentPage, Mode=TwoWay}"

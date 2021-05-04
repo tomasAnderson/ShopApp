@@ -131,12 +131,20 @@
         <Compile Include="MyModel\Warehouses.cs" />
         <Compile Include="MyViewModel\MainWindowViewModel.cs" />
         <Compile Include="MyViewModel\UCChargesViewModel.cs" />
+        <Compile Include="MyViewModel\UCCurrentMonthIncomeViewModel.cs" />
         <Compile Include="MyViewModel\UCSalesViewModel.cs" />
+        <Compile Include="MyViewModel\UCTop5ChargesViewModel.cs" />
         <Compile Include="MyView\UCCharges.xaml.cs">
           <DependentUpon>UCCharges.xaml</DependentUpon>
         </Compile>
+        <Compile Include="MyView\UCCurrentMonthIncome.xaml.cs">
+          <DependentUpon>UCCurrentMonthIncome.xaml</DependentUpon>
+        </Compile>
         <Compile Include="MyView\UCSales.xaml.cs">
           <DependentUpon>UCSales.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="MyView\UCTop5Charges.xaml.cs">
+          <DependentUpon>UCTop5Charges.xaml</DependentUpon>
         </Compile>
         <Compile Include="ViewModel\MainViewModel.cs" />
         <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -158,7 +166,9 @@
             <SubType>Code</SubType>
         </Compile>
         <Page Include="MyView\UCCharges.xaml" />
+        <Page Include="MyView\UCCurrentMonthIncome.xaml" />
         <Page Include="MyView\UCSales.xaml" />
+        <Page Include="MyView\UCTop5Charges.xaml" />
         <Page Include="Styles\PageThemeRD.xaml" />
         <Page Include="Templates\PagesTemplate.xaml" />
     </ItemGroup>
