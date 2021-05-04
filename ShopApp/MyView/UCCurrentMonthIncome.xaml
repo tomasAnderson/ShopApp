@@ -9,5 +9,8 @@
     <Grid>
         <TextBlock Text="{Binding Message}" FontSize="20"
                    VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <Button VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                Content="Сформировать запрос" Margin="5"
+                Command="{Binding CmdCreateReport}" />
     </Grid>
 </UserControl>

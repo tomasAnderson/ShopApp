@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ShopApp.MyView"
+             xmlns:chart="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -21,8 +22,8 @@
         </Grid.RowDefinitions>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="0.8*" />
+                <RowDefinition Height="0.2*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.15*" />
@@ -34,18 +35,36 @@
             <TextBlock Text="С:" FontSize="30" FontWeight="Bold" Grid.Column="1" />
             <TextBlock Text="По:" FontSize="30" FontWeight="Bold" Grid.Column="3" />
 
-            <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding FirstDate}" />
-            <DatePicker Grid.Row="1" Grid.Column="3" SelectedDate="{Binding SecondDate}" />
+            <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding FirstDate, Mode=TwoWay}" />
+            <DatePicker Grid.Row="1" Grid.Column="3" SelectedDate="{Binding SecondDate, Mode=TwoWay}" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="0.6*" />
+                <ColumnDefinition Width="0.2*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="1" Content="Расчитать"
+                    Command="{Binding CmdCompute}" />
         </Grid>
         <Grid Row="2">
-            <DataGrid ItemsSource="{Binding WarehousesList}">
+            <!--<DataGrid ItemsSource="{Binding WarehousesList}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Id}" Header="id" Width="0.1*" />
                     <DataGridTextColumn Binding="{Binding Name}" Header="name" Width="*" />
                     <DataGridTextColumn Binding="{Binding Quantity}" Header="quantity" Width="*" />
                     <DataGridTextColumn Binding="{Binding Amount}" Header="amount" Width="*" />
                 </DataGrid.Columns>
-            </DataGrid>
+            </DataGrid>-->
+
+            <chart:Chart>
+                <chart:Chart.Series>
+                    <chart:PieSeries Title="Experience" ItemsSource="{Binding TopCharges}"
+                                     IndependentValueBinding="{Binding Path=Name}"
+                                     DependentValueBinding="{Binding Path=Amount}" />
+                </chart:Chart.Series>
+            </chart:Chart>
         </Grid>
     </Grid>
 </UserControl>
