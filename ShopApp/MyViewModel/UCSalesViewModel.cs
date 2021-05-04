@@ -85,7 +85,7 @@ namespace ShopApp.MyViewModel
         public UCSalesViewModel()
         {
             WarehousesOc = AllInfo.WarehosesOc;
-            SalesOc = AllInfo.SalesOc;
+            SalesOc = new ObservableCollection<Sales>(AllInfo.SalesOc);
 
             CmdCreate = new RelayCommand(CmdCreateHandler);
             CmdDelete = new RelayCommand(CmdDeleteHandler);
@@ -102,7 +102,7 @@ namespace ShopApp.MyViewModel
                          $"VALUES ({CurrAmount}, {CurrQuantity}, '{CurrSaleDate.Date}', {CurrWarehouse.Id})";
 
             DBConnection.DoSqlCommand(sql);
-            SalesOc = AllInfo.GetSalesOc();
+            SalesOc = new ObservableCollection<Sales>(AllInfo.GetSalesOc());
         }
 
         private void CmdDeleteHandler()
@@ -111,7 +111,7 @@ namespace ShopApp.MyViewModel
 
             string sql = $"DELETE FROM {tableName} WHERE id = {si.Id}";
             DBConnection.DoSqlCommand(sql);
-            SalesOc = AllInfo.GetSalesOc();
+            SalesOc = new ObservableCollection<Sales>(AllInfo.GetSalesOc());
         }
 
         private void CmdChangeHandler()
@@ -122,7 +122,7 @@ namespace ShopApp.MyViewModel
                          $"sale_date = '{CurrSaleDate}', warehouses_id = {CurrWarehouse.Id}" +
                          $" WHERE id = {si.Id}";
             DBConnection.DoSqlCommand(sql);
-            SalesOc = AllInfo.GetSalesOc();
+            SalesOc = new ObservableCollection<Sales>(AllInfo.GetSalesOc());
         }
 
         #endregion

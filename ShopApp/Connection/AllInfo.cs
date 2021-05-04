@@ -11,7 +11,7 @@ namespace ShopApp.Connection
     {
         #region private
 
-        private static ObservableCollection<Sales> _salesOc = new ObservableCollection<Sales>();
+        private static List<Sales> _salesOc = new List<Sales>();
         private static ObservableCollection<Warehouses> _warehousesOc = new ObservableCollection<Warehouses>();
         private static ObservableCollection<Charges> _chargesOc = new ObservableCollection<Charges>();
         private static ObservableCollection<ExpenseItems> _expenseItemsOc = new ObservableCollection<ExpenseItems>();
@@ -20,7 +20,7 @@ namespace ShopApp.Connection
 
         #region public
 
-        public static ObservableCollection<Sales> SalesOc => (_salesOc.Count == 0) ? GetSalesOc() : _salesOc;
+        public static List<Sales> SalesOc => (_salesOc.Count == 0) ? GetSalesOc() : _salesOc;
 
         public static ObservableCollection<Warehouses> WarehosesOc =>
             (_warehousesOc.Count == 0) ? GetWarehousesOc() : _warehousesOc;
@@ -32,9 +32,9 @@ namespace ShopApp.Connection
 
         #endregion
 
-        public static ObservableCollection<Sales> GetSalesOc()
+        public static List<Sales> GetSalesOc()
         {
-            _salesOc = new ObservableCollection<Sales>();
+            _salesOc = new List<Sales>();
             var res = DBConnection.DoSqlCommand("SELECT * FROM SALES ORDER BY id", 5);
             foreach (var r in res)
                 _salesOc.Add(new Sales()
