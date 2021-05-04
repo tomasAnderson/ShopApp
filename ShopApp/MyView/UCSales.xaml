@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="ShopApp.MyView.UCSales"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ShopApp.MyView"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.4*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.8*" />
+                <RowDefinition Height="0.2*" />
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <DataGrid Grid.Row="0" ItemsSource="{Binding SalesOc}" AutoGenerateColumns="False"
+                      SelectedItem="{Binding CurrItem}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id}" Header="Id" Width="0.1*" />
+                    <DataGridTextColumn Binding="{Binding Amount}" Header="amount" Width="*" />
+                    <DataGridTextColumn Binding="{Binding Quantity}" Header="quantity" Width="*" />
+                    <DataGridTextColumn Binding="{Binding SaleDate}" Header="sale_date" Width="*" />
+                    <DataGridTextColumn Binding="{Binding WarehouseId}" Header="warehouse_id" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <!-- <TextBlock Grid.Row="2">Appraisals(Аттестация)</TextBlock> -->
+        </Grid>
+
+
+        <Grid Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.7*" />
+                <RowDefinition Height="0.3*" />
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*" />
+                    <ColumnDefinition Width="0.6*" />
+                </Grid.ColumnDefinitions>
+                <!-- <TextBlock Grid.Row="0" Text="Id:" /> -->
+                <TextBlock Grid.Row="1" Text="Amount:" />
+                <TextBlock Grid.Row="2" Text="Quantity:" />
+                <TextBlock Grid.Row="3" Text="SaleDate:" />
+                <TextBlock Grid.Row="4" Text="WarehouseId:" />
+
+                <!-- <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding CurrItem.Id}" IsReadOnly="True" /> -->
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CurrItem.Amount}" />
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CurrItem.Quantity}" />
+                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CurrItem.SaleDate}" />
+                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding CurrItem.WarehouseId}" />
+            </Grid>
+
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Button Content="Добавить" Command="{Binding CmdCreate}" />
+                <Button Grid.Row="1" Content="Изменить" Command="{Binding CmdChange}" />
+                <Button Grid.Row="2" Content="Удалить" Command="{Binding CmdDelete}" />
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -13,6 +13,7 @@
         <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
         <WarningLevel>4</WarningLevel>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -120,10 +121,19 @@
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
+        <Compile Include="Connection\AllInfo.cs" />
+        <Compile Include="Converters\EnumDescriptionTypeConverter.cs" />
+        <Compile Include="Converters\EnumToStringConverter.cs" />
+        <Compile Include="Enumerations\PagesEnum.cs" />
         <Compile Include="MyModel\Charges.cs" />
         <Compile Include="MyModel\ExpenseItems.cs" />
         <Compile Include="MyModel\Sales.cs" />
         <Compile Include="MyModel\Warehouses.cs" />
+        <Compile Include="MyViewModel\MainWindowViewModel.cs" />
+        <Compile Include="MyViewModel\UCSalesViewModel.cs" />
+        <Compile Include="MyView\UCSales.xaml.cs">
+          <DependentUpon>UCSales.xaml</DependentUpon>
+        </Compile>
         <Compile Include="ViewModel\MainViewModel.cs" />
         <Compile Include="ViewModel\ViewModelLocator.cs" />
         <Page Include="AvtorizationWindow.xaml" />
@@ -143,8 +153,9 @@
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Page Include="MyView\UCSales.xaml" />
         <Page Include="Styles\PageThemeRD.xaml" />
-        <Page Include="Templates\PagesRD.xaml" />
+        <Page Include="Templates\PagesTemplate.xaml" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs">
@@ -163,10 +174,6 @@
     <ItemGroup>
         <None Include="App.config" />
         <None Include="packages.config" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="MyView" />
-      <Folder Include="MyViewModel" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

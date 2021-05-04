@@ -4,12 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShopApp"
+        xmlns:vm="clr-namespace:ShopApp.MyViewModel"
+        xmlns:converters="clr-namespace:ShopApp.Converters"
+        xmlns:view="clr-namespace:ShopApp.MyView"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="450" Width="800">
-    <!--<Grid>
-        <TextBlock FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center">Здарова, чукча !</TextBlock>
-    </Grid>-->
+    <Window.DataContext>
+        <vm:MainWindowViewModel />
+    </Window.DataContext>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Templates/PagesTemplate.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <converters:EnumToStringConverter x:Key="EnumToStringConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*" />
@@ -24,9 +35,13 @@
             <!--<ComboBox
                 ItemsSource="{Binding Pages, Converter={StaticResource EnumToStringConverter}}"
                 SelectedItem="{Binding CurrentVM, Mode=TwoWay}" />-->
-            <ComboBox/>
+            <ComboBox ItemsSource="{Binding PagesEnum, Converter={StaticResource EnumToStringConverter}}"
+                      SelectedItem="{Binding CurrentPage, Mode=TwoWay}"
+                      SelectedIndex="0"/>
             <Button Grid.Column="2" Content="Выход" Click="SignOutBtnClick" />
         </Grid>
-        <ContentControl Grid.Row="1" Content="{Binding CurrentVM}" />
+        <ContentControl Grid.Row="1" Content="{Binding CurrentPage}" />
+        <!-- <view:UCSales Grid.Row="1"></view:UCSales> -->
+
     </Grid>
 </Window>

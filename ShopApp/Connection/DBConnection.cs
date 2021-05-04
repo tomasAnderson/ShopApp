@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Documents;
 using Npgsql;
 
@@ -6,11 +7,11 @@ namespace ShopApp.Connection
 {
     public class DBConnection
     {
-        private string con = "Host=localhost;Username=postgres;Password=postgres;Database=shop_db";
+        private static string con = "Host=localhost;Username=postgres;Password=postgres;Database=shop_db";
 
-        public List<string> DoSqlConnection(string sql, int columns)
+        public static List<List<object>> DoSqlCommand(string sql, int columns)
         {
-            var list = new List<string>();
+            List<List<object>> data = new List<List<object>>();
             
             // using var con = new NpgsqlConnection(cs);
             using (var conn = new NpgsqlConnection(con))
@@ -20,12 +21,31 @@ namespace ShopApp.Connection
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    var list = new List<object>();
                     for(int i = 0; i < columns; i++)
-                        list.Add(reader[i].ToString());                    
+                        list.Add(reader[i]); 
+                    data.Add(list);
                 }
             }
 
-            return list;
+            return data;
+        }
+
+        public static void DoSqlCommand(string sql)
+        {
+            try
+            {
+                using (var conn = new NpgsqlConnection(con))
+                {
+                    conn.Open();
+                    NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

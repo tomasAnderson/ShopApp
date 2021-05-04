@@ -16,14 +16,13 @@ namespace ShopApp
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
-            DoSqlCommand();
+            //DoSqlCommand();
             this.Close();
         }
 
         void DoSqlCommand()
         {
-            DBConnection connection = new DBConnection();
-            var res = connection.DoSqlConnection("Select * FROM users", 3);
+            var res = DBConnection.DoSqlCommand("SELECT * FROM users", 3);
             MessageBox.Show(res[1].ToString());
         }
     }
