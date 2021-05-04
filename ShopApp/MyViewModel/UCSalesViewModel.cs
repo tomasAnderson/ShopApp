@@ -14,7 +14,13 @@ namespace ShopApp.MyViewModel
 
         private ObservableCollection<Sales> _salesOc;
         private ObservableCollection<Warehouses> _warehousesOc;
+        private string tableName = "SALES";
+
         private object _currItem;
+        private double _currAmount;
+        private int _currQuantity;
+        private DateTime _currSaleDate;
+        private Warehouses _currWarehouse;
 
         #endregion
 
@@ -35,7 +41,35 @@ namespace ShopApp.MyViewModel
         public object CurrItem
         {
             get => _currItem;
-            set => Set(() => CurrItem, ref _currItem, value);
+            set
+            {
+                if (Set(() => CurrItem, ref _currItem, value))
+                    SetDataToFields();
+            }
+        }
+
+        public double CurrAmount
+        {
+            get => _currAmount;
+            set => Set(() => CurrAmount, ref _currAmount, value);
+        }
+
+        public int CurrQuantity
+        {
+            get => _currQuantity;
+            set => Set(() => CurrQuantity, ref _currQuantity, value);
+        }
+
+        public DateTime CurrSaleDate
+        {
+            get => _currSaleDate;
+            set => Set(() => CurrSaleDate, ref _currSaleDate, value);
+        }
+
+        public Warehouses CurrWarehouse
+        {
+            get => _currWarehouse;
+            set => Set(() => CurrWarehouse, ref _currWarehouse, value);
         }
 
         #endregion
@@ -52,7 +86,7 @@ namespace ShopApp.MyViewModel
         {
             WarehousesOc = AllInfo.WarehosesOc;
             SalesOc = AllInfo.SalesOc;
-            
+
             CmdCreate = new RelayCommand(CmdCreateHandler);
             CmdDelete = new RelayCommand(CmdDeleteHandler);
             CmdChange = new RelayCommand(CmdChangeHandler);
@@ -62,50 +96,45 @@ namespace ShopApp.MyViewModel
 
         private void CmdCreateHandler()
         {
-            /*var sm = CurrentPredmet;
+            var si = (Sales) CurrItem;
 
-            string tableName = "Predmety";
+            string sql = $"INSERT INTO {tableName} (amount, quantity, sale_date, warehouses_id) " +
+                         $"VALUES ({CurrAmount}, {CurrQuantity}, '{CurrSaleDate.Date}', {CurrWarehouse.Id})";
 
-            if (tableName.Trim() != "")
-            {
-                string sql = $"INSERT INTO {tableName} (Predmet, Klass, Semestr, Atest, Datest, Fzvit, Maxbal) " +
-                             $"VALUES ('{CurrentSubject}', {CurrentClass?.Id}, {sm.Semestr}, '{sm?.Atest}', '{sm?.Datest}', " +
-                             $"'{sm?.Fzvit}', {sm?.Maxbal} )";
-
-                AllData.CreateSomething(sql);
-                Predmety = GetPredmetyForTable(AllData.GetPredmety());
-            }*/
+            DBConnection.DoSqlCommand(sql);
+            SalesOc = AllInfo.GetSalesOc();
         }
 
         private void CmdDeleteHandler()
         {
-            /*var sm = CurrentPredmet;
+            var si = (Sales) CurrItem;
 
-            string tableName = "Predmety";
-
-            if (tableName.Trim() != "")
-            {
-                string sql = $"DELETE FROM {tableName} WHERE [Код] = {sm.Id}";
-                AllData.CreateSomething(sql);
-                Predmety = GetPredmetyForTable(AllData.GetPredmety());
-            }*/
+            string sql = $"DELETE FROM {tableName} WHERE id = {si.Id}";
+            DBConnection.DoSqlCommand(sql);
+            SalesOc = AllInfo.GetSalesOc();
         }
 
         private void CmdChangeHandler()
         {
-            /*var sm = CurrentPredmet;
+            var si = (Sales) CurrItem;
 
-            string tableName = "Predmety";
+            string sql = $"UPDATE {tableName} SET amount = {CurrAmount}, quantity = {CurrQuantity}, " +
+                         $"sale_date = '{CurrSaleDate}', warehouses_id = {CurrWarehouse.Id}" +
+                         $" WHERE id = {si.Id}";
+            DBConnection.DoSqlCommand(sql);
+            SalesOc = AllInfo.GetSalesOc();
+        }
 
-            if (tableName.Trim() != "")
-            {
-                string sql = $"UPDATE {tableName} SET Predmet = '{CurrentSubject}', Klass = {CurrentClass?.Id}, " +
-                             $"Semestr = {sm?.Semestr}, Atest = '{sm?.Atest}', Datest = '{sm?.Datest}', Fzvit = '{sm?.Fzvit}', " +
-                             $"Maxbal = {sm?.Maxbal} " +
-                             $" WHERE [Код] = {sm?.Id}";
-                AllData.CreateSomething(sql);
-                Predmety = GetPredmetyForTable(AllData.GetPredmety());
-            }*/
+        #endregion
+
+        #region private methods
+
+        private void SetDataToFields()
+        {
+            CurrAmount = ((Sales) CurrItem).Amount;
+            CurrQuantity = ((Sales) CurrItem).Quantity;
+            CurrSaleDate = ((Sales) CurrItem).SaleDate;
+            CurrWarehouse = ((Sales) CurrItem).WarehouseId;
         }
 
         #endregion

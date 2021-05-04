@@ -13,7 +13,6 @@ namespace ShopApp.Connection
         {
             List<List<object>> data = new List<List<object>>();
             
-            // using var con = new NpgsqlConnection(cs);
             using (var conn = new NpgsqlConnection(con))
             {
                 conn.Open();

@@ -6,6 +6,13 @@
              xmlns:local="clr-namespace:ShopApp.MyView"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/PageThemeRD.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.4*" />
@@ -24,16 +31,22 @@
                 </Grid.ColumnDefinitions>
             </Grid>
             <DataGrid Grid.Row="0" ItemsSource="{Binding SalesOc}" AutoGenerateColumns="False"
-                      SelectedItem="{Binding CurrItem}">
+                      SelectedItem="{Binding CurrItem, Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Id}" Header="Id" Width="0.1*" />
                     <DataGridTextColumn Binding="{Binding Amount}" Header="amount" Width="*" />
                     <DataGridTextColumn Binding="{Binding Quantity}" Header="quantity" Width="*" />
-                    <DataGridTextColumn Binding="{Binding SaleDate}" Header="sale_date" Width="*" />
-                    <DataGridTextColumn Binding="{Binding WarehouseId}" Header="warehouse_id" Width="*" />
+                    <DataGridTextColumn Binding="{Binding SaleDate, StringFormat='{}dd.MM.yyyy'}" Header="sale_date"
+                                        Width="*" />
+                    <DataGridTemplateColumn Header="warehouse_id" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding WarehouseId.Name}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <!-- <TextBlock Grid.Row="2">Appraisals(Аттестация)</TextBlock> -->
         </Grid>
 
 
@@ -61,15 +74,16 @@
                 <TextBlock Grid.Row="1" Text="Amount:" />
                 <TextBlock Grid.Row="2" Text="Quantity:" />
                 <TextBlock Grid.Row="3" Text="SaleDate:" />
-                <TextBlock Grid.Row="4" Text="WarehouseId:" />
+                <TextBlock Grid.Row="4" Text="WarehouseId:" FontSize="15" />
 
                 <!-- <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding CurrItem.Id}" IsReadOnly="True" /> -->
-                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CurrItem.Amount}" />
-                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CurrItem.Quantity}" />
-                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding CurrItem.SaleDate}" />
-                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding CurrItem.WarehouseId}" />
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CurrAmount}" />
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CurrQuantity}" />
+                <DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding CurrSaleDate}" />
+                <ComboBox Grid.Row="4" Grid.Column="1" ItemsSource="{Binding WarehousesOc}"
+                          SelectedItem="{Binding CurrWarehouse, Mode=TwoWay}"
+                          DisplayMemberPath="Name" />
             </Grid>
-
 
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
