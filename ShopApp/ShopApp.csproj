@@ -142,6 +142,7 @@
         <Compile Include="Converters\EnumToStringConverter.cs" />
         <Compile Include="Converters\MessageBoxConverter.cs" />
         <Compile Include="Enumerations\PagesEnum.cs" />
+        <Compile Include="HashVerifycation.cs" />
         <Compile Include="MyModel\Charges.cs" />
         <Compile Include="MyModel\ExpenseItems.cs" />
         <Compile Include="MyModel\Sales.cs" />

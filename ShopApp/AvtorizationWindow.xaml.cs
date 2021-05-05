@@ -42,7 +42,7 @@ namespace ShopApp
 
             CurrUser = users.FirstOrDefault(x => x.Name.Trim() == login.Text.Trim());
 
-            return (password.Password.Trim() == CurrUser?.Password.Trim());
+            return (HashVerifycation.VerifySHA512Hash(password.Password.Trim(), CurrUser?.Password.Trim()));
         }
     }
 }
