@@ -34,7 +34,8 @@ namespace ShopApp.MyViewModel
             set
             {
                 if (Set(() => CurrItem, ref _currItem, value))
-                    SetDataToFields();
+                    if (value != null)
+                        SetDataToFields();
             }
         }
 
@@ -108,9 +109,9 @@ namespace ShopApp.MyViewModel
 
         private void SetDataToFields()
         {
-            CurrName = ((ExpenseItems) CurrItem!)!.Name?.Trim();
+            CurrName = ((ExpenseItems) CurrItem).Name.Trim();
         }
-        
+
         private bool CheckForNull()
         {
             return CurrName != "";
@@ -118,5 +119,4 @@ namespace ShopApp.MyViewModel
 
         #endregion
     }
-
 }

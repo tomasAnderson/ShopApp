@@ -43,7 +43,8 @@ namespace ShopApp.MyViewModel
             set
             {
                 if (Set(() => CurrItem, ref _currItem, value))
-                    SetDataToFields();
+                    if (value != null)
+                        SetDataToFields();
             }
         }
 
@@ -131,11 +132,11 @@ namespace ShopApp.MyViewModel
 
         private void SetDataToFields()
         {
-            CurrAmount = ((Charges) CurrItem!)!.Amount!;
-            CurrChargeDate = ((Charges) CurrItem!)!.ChargeDate!;
-            CurrExpenseItemId = ((Charges) CurrItem!)!.ExpenseItemId!;
+            CurrAmount = ((Charges) CurrItem).Amount;
+            CurrChargeDate = ((Charges) CurrItem).ChargeDate;
+            CurrExpenseItemId = ((Charges) CurrItem).ExpenseItemId;
         }
-        
+
         private bool CheckForNull()
         {
             return CurrAmount != 0 && CurrChargeDate != DateTime.MinValue && CurrExpenseItemId != null;

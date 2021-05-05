@@ -36,7 +36,8 @@ namespace ShopApp.MyViewModel
             set
             {
                 if (Set(() => CurrItem, ref _currItem, value))
-                    SetDataToFields();
+                    if (value != null)
+                        SetDataToFields();
             }
         }
 
@@ -123,11 +124,11 @@ namespace ShopApp.MyViewModel
 
         private void SetDataToFields()
         {
-            CurrName = ((Warehouses) CurrItem!)?.Name?.Trim();
-            CurrQuantity = ((Warehouses) CurrItem!)!.Quantity!;
-            CurrAmount = ((Warehouses) CurrItem!)!.Amount!;
+            CurrName = ((Warehouses) CurrItem).Name.Trim();
+            CurrQuantity = ((Warehouses) CurrItem).Quantity;
+            CurrAmount = ((Warehouses) CurrItem).Amount;
         }
-        
+
         private bool CheckForNull()
         {
             return CurrName != "" && CurrQuantity != 0 && CurrAmount != 0;
