@@ -96,33 +96,40 @@ namespace ShopApp.MyViewModel
 
         private void CmdCreateHandler()
         {
-            var si = (Sales) CurrItem;
+            if (CheckForNull())
+            {
+                string sql = $"INSERT INTO {tableName} (amount, quantity, sale_date, warehouses_id) " +
+                             $"VALUES ({CurrAmount}, {CurrQuantity}, '{CurrSaleDate.Date}', {CurrWarehouse.Id})";
 
-            string sql = $"INSERT INTO {tableName} (amount, quantity, sale_date, warehouses_id) " +
-                         $"VALUES ({CurrAmount}, {CurrQuantity}, '{CurrSaleDate.Date}', {CurrWarehouse.Id})";
-
-            DBConnection.DoSqlCommand(sql);
-            SalesOc = new ObservableCollection<Sales>(AllInfo.GetSalesOc());
+                DBConnection.DoSqlCommand(sql);
+                SalesOc = new ObservableCollection<Sales>(AllInfo.GetSalesOc());
+            }
         }
 
         private void CmdDeleteHandler()
         {
             var si = (Sales) CurrItem;
 
-            string sql = $"DELETE FROM {tableName} WHERE id = {si.Id}";
-            DBConnection.DoSqlCommand(sql);
-            SalesOc = new ObservableCollection<Sales>(AllInfo.GetSalesOc());
+            if (CheckForNull() && si != null)
+            {
+                string sql = $"DELETE FROM {tableName} WHERE id = {si.Id}";
+                DBConnection.DoSqlCommand(sql);
+                SalesOc = new ObservableCollection<Sales>(AllInfo.GetSalesOc());
+            }
         }
 
         private void CmdChangeHandler()
         {
             var si = (Sales) CurrItem;
 
-            string sql = $"UPDATE {tableName} SET amount = {CurrAmount}, quantity = {CurrQuantity}, " +
-                         $"sale_date = '{CurrSaleDate}', warehouses_id = {CurrWarehouse.Id}" +
-                         $" WHERE id = {si.Id}";
-            DBConnection.DoSqlCommand(sql);
-            SalesOc = new ObservableCollection<Sales>(AllInfo.GetSalesOc());
+            if (CheckForNull() && si != null)
+            {
+                string sql = $"UPDATE {tableName} SET amount = {CurrAmount}, quantity = {CurrQuantity}, " +
+                             $"sale_date = '{CurrSaleDate}', warehouses_id = {CurrWarehouse.Id}" +
+                             $" WHERE id = {si.Id}";
+                DBConnection.DoSqlCommand(sql);
+                SalesOc = new ObservableCollection<Sales>(AllInfo.GetSalesOc());
+            }
         }
 
         #endregion
@@ -135,6 +142,11 @@ namespace ShopApp.MyViewModel
             CurrQuantity = ((Sales) CurrItem).Quantity;
             CurrSaleDate = ((Sales) CurrItem).SaleDate;
             CurrWarehouse = ((Sales) CurrItem).WarehouseId;
+        }
+
+        private bool CheckForNull()
+        {
+            return CurrAmount != 0 && CurrQuantity != 0 && CurrSaleDate != DateTime.MinValue && CurrWarehouse != null;
         }
 
         #endregion

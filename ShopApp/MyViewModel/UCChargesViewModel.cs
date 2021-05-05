@@ -89,33 +89,40 @@ namespace ShopApp.MyViewModel
 
         private void CmdCreateHandler()
         {
-            var si = (Charges) CurrItem;
+            if (CheckForNull())
+            {
+                string sql = $"INSERT INTO {tableName} (amount, charge_data, expense_item_id) " +
+                             $"VALUES ({CurrAmount}, '{CurrChargeDate.Date}', {CurrExpenseItemId.Id})";
 
-            string sql = $"INSERT INTO {tableName} (amount, charge_data, expense_item_id) " +
-                         $"VALUES ({CurrAmount}, '{CurrChargeDate.Date}', {CurrExpenseItemId.Id})";
-
-            DBConnection.DoSqlCommand(sql);
-            ChargesOc = AllInfo.GetCharges();
+                DBConnection.DoSqlCommand(sql);
+                ChargesOc = AllInfo.GetCharges();
+            }
         }
 
         private void CmdDeleteHandler()
         {
             var si = (Charges) CurrItem;
 
-            string sql = $"DELETE FROM {tableName} WHERE id = {si.Id}";
-            DBConnection.DoSqlCommand(sql);
-            ChargesOc = AllInfo.GetCharges();
+            if (CheckForNull() && si != null)
+            {
+                string sql = $"DELETE FROM {tableName} WHERE id = {si.Id}";
+                DBConnection.DoSqlCommand(sql);
+                ChargesOc = AllInfo.GetCharges();
+            }
         }
 
         private void CmdChangeHandler()
         {
             var si = (Charges) CurrItem;
 
-            string sql = $"UPDATE {tableName} SET amount = {CurrAmount}, " +
-                         $"charge_data = '{CurrChargeDate}', expense_item_id = {CurrExpenseItemId.Id}" +
-                         $" WHERE id = {si.Id}";
-            DBConnection.DoSqlCommand(sql);
-            ChargesOc = AllInfo.GetCharges();
+            if (CheckForNull() && si != null)
+            {
+                string sql = $"UPDATE {tableName} SET amount = {CurrAmount}, " +
+                             $"charge_data = '{CurrChargeDate}', expense_item_id = {CurrExpenseItemId.Id}" +
+                             $" WHERE id = {si.Id}";
+                DBConnection.DoSqlCommand(sql);
+                ChargesOc = AllInfo.GetCharges();
+            }
         }
 
         #endregion
@@ -127,6 +134,11 @@ namespace ShopApp.MyViewModel
             CurrAmount = ((Charges) CurrItem).Amount;
             CurrChargeDate = ((Charges) CurrItem).ChargeDate;
             CurrExpenseItemId = ((Charges) CurrItem).ExpenseItemId;
+        }
+        
+        private bool CheckForNull()
+        {
+            return CurrAmount != 0 && CurrChargeDate != DateTime.MinValue && CurrExpenseItemId != null;
         }
 
         #endregion

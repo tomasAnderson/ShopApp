@@ -2,6 +2,8 @@
 using System.Security.Cryptography;
 using System.Text;
 
+//https://emn178.github.io/online-tools/sha512.html
+
 namespace ShopApp
 {
     public class HashVerifycation
