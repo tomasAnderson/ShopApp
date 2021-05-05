@@ -123,9 +123,9 @@ namespace ShopApp.MyViewModel
 
         private void SetDataToFields()
         {
-            CurrName = ((Warehouses) CurrItem)?.Name?.Trim();
-            CurrQuantity = ((Warehouses) CurrItem)!.Quantity!;
-            CurrAmount = ((Warehouses) CurrItem)!.Amount!;
+            CurrName = ((Warehouses) CurrItem!)?.Name?.Trim();
+            CurrQuantity = ((Warehouses) CurrItem!)!.Quantity!;
+            CurrAmount = ((Warehouses) CurrItem!)!.Amount!;
         }
         
         private bool CheckForNull()
