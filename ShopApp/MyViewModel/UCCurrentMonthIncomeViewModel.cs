@@ -3,6 +3,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using ShopApp.Connection;
+using ShopApp.Converters;
 
 namespace ShopApp.MyViewModel
 {
@@ -17,7 +18,7 @@ namespace ShopApp.MyViewModel
         {
             GetIncome();
             CmdCreateReport = new RelayCommand(CmdCreateReportHandler);
-            Message = $"Прибыль за 4 месяца: {Income}";
+            Message = $"Прибыль за посдедние 4 месяца: {Income}";
         }
 
         private void GetIncome()
@@ -29,8 +30,7 @@ namespace ShopApp.MyViewModel
 
         private void CmdCreateReportHandler()
         {
-            OutputToExcel outputToExcel = new OutputToExcel();
-            outputToExcel.CreateReport("Прибыль за последние 4 месяца:", Income.ToString());
+            MessageBoxConverter.Convert(OutputReport.CreateReport(Message));
         }
     }
 }
