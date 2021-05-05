@@ -108,7 +108,7 @@ namespace ShopApp.MyViewModel
 
         private void SetDataToFields()
         {
-            CurrName = ((ExpenseItems) CurrItem).Name?.Trim();
+            CurrName = ((ExpenseItems) CurrItem)!.Name?.Trim();
         }
         
         private bool CheckForNull()
