@@ -18,7 +18,7 @@ namespace ShopApp.MyViewModel
 
         private object _currItem;
         private double _currAmount;
-        private DateTime _currChargeDate;
+        private DateTime _currChargeDate = DateTime.Today;
         private ExpenseItems _currExpenseItemId;
 
         #endregion

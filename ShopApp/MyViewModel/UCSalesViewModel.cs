@@ -19,7 +19,7 @@ namespace ShopApp.MyViewModel
         private object _currItem;
         private double _currAmount;
         private int _currQuantity;
-        private DateTime _currSaleDate;
+        private DateTime _currSaleDate = DateTime.Today;
         private Warehouses _currWarehouse;
 
         #endregion
