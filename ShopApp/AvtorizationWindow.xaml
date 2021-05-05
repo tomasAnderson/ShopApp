@@ -28,10 +28,14 @@
             <ColumnDefinition />
             <ColumnDefinition Width="0.1*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="1" Grid.Column="1" Text="Логин:" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Логин:"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="25" />
         <TextBox Grid.Row="1" Grid.Column="2" x:Name="login" />
-        <TextBlock Grid.Row="2" Grid.Column="1" Text="Пароль:" />
-        <PasswordBox Grid.Row="2" Grid.Column="2" x:Name="password"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="Пароль:"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="25" />
+        <PasswordBox Grid.Row="2" Grid.Column="2" x:Name="password" />
         <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
