@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -8,26 +7,24 @@ using ShopApp.MyModel;
 
 namespace ShopApp.MyViewModel
 {
-    public class UCWarehouseViewModel : ViewModelBase
+    public class UCExpenseItemViewModel : ViewModelBase
     {
         #region private
 
-        private ObservableCollection<Warehouses> _warehouses;
-        private string tableName = "warehouses".ToUpper();
+        private ObservableCollection<ExpenseItems> _expenseItems;
+        private string tableName = "expense_items".ToUpper();
 
         private object _currItem;
         private string _currName;
-        private int _currQuantity;
-        private double _currAmount;
 
         #endregion
 
         #region public
 
-        public ObservableCollection<Warehouses> WarehousesOc
+        public ObservableCollection<ExpenseItems> ExpenseItemsOc
         {
-            get => _warehouses;
-            set => Set(() => WarehousesOc, ref _warehouses, value);
+            get => _expenseItems;
+            set => Set(() => ExpenseItemsOc, ref _expenseItems, value);
         }
 
         public object CurrItem
@@ -46,18 +43,6 @@ namespace ShopApp.MyViewModel
             set => Set(() => CurrName, ref _currName, value);
         }
 
-        public int CurrQuantity
-        {
-            get => _currQuantity;
-            set => Set(() => CurrQuantity, ref _currQuantity, value);
-        }
-
-        public double CurrAmount
-        {
-            get => _currAmount;
-            set => Set(() => CurrAmount, ref _currAmount, value);
-        }
-
         #endregion
 
         #region public commands
@@ -68,9 +53,9 @@ namespace ShopApp.MyViewModel
 
         #endregion
 
-        public UCWarehouseViewModel()
+        public UCExpenseItemViewModel()
         {
-            WarehousesOc = AllInfo.WarehosesOc;
+            ExpenseItemsOc = AllInfo.ExpenseItemsOc;
 
             CmdCreate = new RelayCommand(CmdCreateHandler);
             CmdDelete = new RelayCommand(CmdDeleteHandler);
@@ -83,37 +68,36 @@ namespace ShopApp.MyViewModel
         {
             if (CheckForNull())
             {
-                string sql = $"INSERT INTO {tableName} (name, quantity, amount) " +
-                             $"VALUES ('{CurrName}', {CurrQuantity}, {CurrAmount})";
+                string sql = $"INSERT INTO {tableName} (name) " +
+                             $"VALUES ('{CurrName}')";
 
                 DBConnection.DoSqlCommand(sql);
-                WarehousesOc = AllInfo.GetWarehousesOc();
+                ExpenseItemsOc = AllInfo.GetExpenseItems();
             }
         }
 
         private void CmdDeleteHandler()
         {
-            var si = (Warehouses) CurrItem;
+            var si = (ExpenseItems) CurrItem;
 
             if (CheckForNull() && si != null)
             {
                 string sql = $"DELETE FROM {tableName} WHERE id = {si.Id}";
                 DBConnection.DoSqlCommand(sql);
-                WarehousesOc = AllInfo.GetWarehousesOc();
+                ExpenseItemsOc = AllInfo.GetExpenseItems();
             }
         }
 
         private void CmdChangeHandler()
         {
-            var si = (Warehouses) CurrItem;
+            var si = (ExpenseItems) CurrItem;
 
             if (CheckForNull() && si != null)
             {
-                string sql = $"UPDATE {tableName} SET name = '{CurrName}', " +
-                             $"quantity = {CurrQuantity}, amount = {CurrAmount}" +
+                string sql = $"UPDATE {tableName} SET name = '{CurrName}' " +
                              $" WHERE id = {si.Id}";
                 DBConnection.DoSqlCommand(sql);
-                WarehousesOc = AllInfo.GetWarehousesOc();
+                ExpenseItemsOc = AllInfo.GetExpenseItems();
             }
         }
 
@@ -123,16 +107,15 @@ namespace ShopApp.MyViewModel
 
         private void SetDataToFields()
         {
-            CurrName = ((Warehouses) CurrItem).Name.Trim();
-            CurrQuantity = ((Warehouses) CurrItem).Quantity;
-            CurrAmount = ((Warehouses) CurrItem).Amount;
+            CurrName = ((ExpenseItems) CurrItem).Name.Trim();
         }
         
         private bool CheckForNull()
         {
-            return CurrName != "" && CurrQuantity != 0 && CurrAmount != 0;
+            return CurrName != "";
         }
 
         #endregion
     }
+
 }

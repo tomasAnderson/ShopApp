@@ -2,14 +2,17 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:view="clr-namespace:ShopApp.MyView"
                     xmlns:vm="clr-namespace:ShopApp.MyViewModel">
-    <DataTemplate DataType="{x:Type vm:UCWarehouseViewModel}">
-        <view:UCWarehouse />
-    </DataTemplate>
     <DataTemplate DataType="{x:Type vm:UCSalesViewModel}">
         <view:UCSales />
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:UCChargesViewModel}">
         <view:UCCharges />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:UCWarehouseViewModel}">
+        <view:UCWarehouse />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:UCExpenseItemViewModel}">
+        <view:UCExpenseItem />
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:UCCurrentMonthIncomeViewModel}">
         <view:UCCurrentMonthIncome />

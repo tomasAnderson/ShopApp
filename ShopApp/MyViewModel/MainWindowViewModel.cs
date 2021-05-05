@@ -7,9 +7,10 @@ namespace ShopApp.MyViewModel
     public class MainWindowViewModel : ViewModelBase
     {
         private object _currentPage;
-        private UCWarehouseViewModel _warehouseViewModel;
         private UCSalesViewModel _salesViewModel;
         private UCChargesViewModel _chargesViewModel;
+        private UCWarehouseViewModel _warehouseViewModel;
+        private UCExpenseItemViewModel _expenseItemViewModel;
         private UCCurrentMonthIncomeViewModel _currentMonthIncomeViewModel;
         private UCTop5ChargesViewModel _top5ChargesViewModel;
 
@@ -29,9 +30,10 @@ namespace ShopApp.MyViewModel
         {
             CurrentPage = pagesEnum switch
             {
-                PagesEnum.Warehouse => _warehouseViewModel = new UCWarehouseViewModel(),
                 PagesEnum.Sales => _salesViewModel = new UCSalesViewModel(),
                 PagesEnum.Charges => _chargesViewModel = new UCChargesViewModel(),
+                PagesEnum.Warehouse => _warehouseViewModel = new UCWarehouseViewModel(),
+                PagesEnum.ExpenseItem => _expenseItemViewModel = new UCExpenseItemViewModel(),
                 PagesEnum.CurrentMonthIncome => _currentMonthIncomeViewModel = new UCCurrentMonthIncomeViewModel(),
                 PagesEnum.Top5Charges => _top5ChargesViewModel = new UCTop5ChargesViewModel(),
                 _ => throw new ArgumentOutOfRangeException(nameof(pagesEnum), pagesEnum, null)

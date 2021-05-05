@@ -152,6 +152,7 @@
         <Compile Include="MyViewModel\MainWindowViewModel.cs" />
         <Compile Include="MyViewModel\UCChargesViewModel.cs" />
         <Compile Include="MyViewModel\UCCurrentMonthIncomeViewModel.cs" />
+        <Compile Include="MyViewModel\UCExpenseItemViewModel.cs" />
         <Compile Include="MyViewModel\UCSalesViewModel.cs" />
         <Compile Include="MyViewModel\UCTop5ChargesViewModel.cs" />
         <Compile Include="MyViewModel\UCWarehouseViewModel.cs" />
