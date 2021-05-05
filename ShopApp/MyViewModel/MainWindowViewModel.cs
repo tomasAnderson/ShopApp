@@ -7,6 +7,7 @@ namespace ShopApp.MyViewModel
     public class MainWindowViewModel : ViewModelBase
     {
         private object _currentPage;
+        private UCWarehouseViewModel _warehouseViewModel;
         private UCSalesViewModel _salesViewModel;
         private UCChargesViewModel _chargesViewModel;
         private UCCurrentMonthIncomeViewModel _currentMonthIncomeViewModel;
@@ -28,6 +29,7 @@ namespace ShopApp.MyViewModel
         {
             CurrentPage = pagesEnum switch
             {
+                PagesEnum.Warehouse => _warehouseViewModel = new UCWarehouseViewModel(),
                 PagesEnum.Sales => _salesViewModel = new UCSalesViewModel(),
                 PagesEnum.Charges => _chargesViewModel = new UCChargesViewModel(),
                 PagesEnum.CurrentMonthIncome => _currentMonthIncomeViewModel = new UCCurrentMonthIncomeViewModel(),

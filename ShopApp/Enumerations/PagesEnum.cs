@@ -10,6 +10,8 @@ namespace ShopApp.Enumerations
         Sales,
         [Description("Журнал расходов")]
         Charges,
+        [Description("Товары")]
+        Warehouse,
         [Description("Прибыль магазина за определенную дату")]
         CurrentMonthIncome,
         [Description("Пять самых доходных товаров за заданный интервал дат")]
