@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ShopApp"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="AvtorizationWindow" Height="350" Width="600">
+        Title="Окно авторизации" Height="350" Width="600">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -29,9 +29,9 @@
             <ColumnDefinition Width="0.1*" />
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="1" Grid.Column="1" Text="Логин:" />
-        <TextBox Grid.Row="1" Grid.Column="2" />
+        <TextBox Grid.Row="1" Grid.Column="2" x:Name="login" />
         <TextBlock Grid.Row="2" Grid.Column="1" Text="Пароль:" />
-        <PasswordBox Grid.Row="2" Grid.Column="2" />
+        <PasswordBox Grid.Row="2" Grid.Column="2" x:Name="password"/>
         <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />

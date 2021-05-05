@@ -146,6 +146,7 @@
         <Compile Include="MyModel\ExpenseItems.cs" />
         <Compile Include="MyModel\Sales.cs" />
         <Compile Include="MyModel\Top5Charges.cs" />
+        <Compile Include="MyModel\User.cs" />
         <Compile Include="MyModel\Warehouses.cs" />
         <Compile Include="MyViewModel\MainWindowViewModel.cs" />
         <Compile Include="MyViewModel\UCChargesViewModel.cs" />

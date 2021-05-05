@@ -81,5 +81,17 @@ namespace ShopApp.Connection
                 });
             return _expenseItemsOc;
         }
+
+        public static ObservableCollection<User> GetUsers()
+        {
+            var users = new ObservableCollection<User>();
+            var res = DBConnection.DoSqlCommand("SELECT * FROM users", 3);
+            foreach (var r in res)
+                users.Add(new User()
+                {
+                    Id = (int) r[0], Name = (string) r[1], Password = (string) r[2]
+                });
+            return users;
+        }
     }
 }
