@@ -25,7 +25,7 @@ namespace ShopApp.MyViewModel
         {
             var res = DBConnection.DoSqlCommand("SELECT get_income()", 1);
             foreach (var r in res)
-                Income = (double) r.FirstOrDefault();
+                Income = (double) r?.FirstOrDefault();
         }
 
         private void CmdCreateReportHandler()

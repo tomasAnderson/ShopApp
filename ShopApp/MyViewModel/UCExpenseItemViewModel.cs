@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿#nullable enable
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -15,7 +16,7 @@ namespace ShopApp.MyViewModel
         private string tableName = "expense_items".ToUpper();
 
         private object _currItem;
-        private string _currName;
+        private string? _currName;
 
         #endregion
 
@@ -37,7 +38,7 @@ namespace ShopApp.MyViewModel
             }
         }
 
-        public string CurrName
+        public string? CurrName
         {
             get => _currName;
             set => Set(() => CurrName, ref _currName, value);
@@ -94,7 +95,7 @@ namespace ShopApp.MyViewModel
 
             if (CheckForNull() && si != null)
             {
-                string sql = $"UPDATE {tableName} SET name = '{CurrName}' " +
+                string sql = $"UPDATE {tableName} SET name = '{CurrName!}' " +
                              $" WHERE id = {si.Id}";
                 DBConnection.DoSqlCommand(sql);
                 ExpenseItemsOc = AllInfo.GetExpenseItems();
@@ -107,7 +108,7 @@ namespace ShopApp.MyViewModel
 
         private void SetDataToFields()
         {
-            CurrName = ((ExpenseItems) CurrItem).Name.Trim();
+            CurrName = ((ExpenseItems) CurrItem).Name?.Trim();
         }
         
         private bool CheckForNull()

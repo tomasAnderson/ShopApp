@@ -131,9 +131,9 @@ namespace ShopApp.MyViewModel
 
         private void SetDataToFields()
         {
-            CurrAmount = ((Charges) CurrItem).Amount;
-            CurrChargeDate = ((Charges) CurrItem).ChargeDate;
-            CurrExpenseItemId = ((Charges) CurrItem).ExpenseItemId;
+            CurrAmount = ((Charges) CurrItem).Amount!;
+            CurrChargeDate = ((Charges) CurrItem).ChargeDate!;
+            CurrExpenseItemId = ((Charges) CurrItem).ExpenseItemId!;
         }
         
         private bool CheckForNull()
